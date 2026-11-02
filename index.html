@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARRIRAW HDE · 无损，只是更小</title>
+  <meta name="description" content="CODEX High Density Encoding（HDE）中文介绍：为 ARRIRAW 提供逐位一致的无损编码，体积最高缩小一半。" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand"><span class="brand-mark">◆</span> ARRIRAW <span class="brand-thin">HDE</span></div>
+      <nav class="nav-links">
+        <a href="#how">原理</a>
+        <a href="#calc">省多少</a>
+        <a href="#support">支持范围</a>
+        <a href="#use">怎么用</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="badge">CODEX High Density Encoding</div>
+      <h1>无损，<br />只是更小。</h1>
+      <p class="subtitle">HDE 是专为 ARRIRAW 设计的无损编码：解码后与原始文件逐位一致，体积却只有约六成。</p>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">~60%</div><div class="stat-label">编码后体积</div></div>
+        <div class="stat"><div class="stat-num">Bit-exact</div><div class="stat-label">解码逐位一致</div></div>
+        <div class="stat"><div class="stat-num">任意分辨率</div><div class="stat-label">全 ALEXA / AMIRA</div></div>
+      </div>
+      <div class="hero-cta">
+        <a class="btn" href="#calc">算算能省多少</a>
+        <a class="btn btn-secondary" href="#use">直接上手</a>
+      </div>
+    </section>
+
+    <!-- 原理 -->
+    <section id="how">
+      <p class="eyebrow">原理</p>
+      <h2>像 zip 一样，但为 Bayer 而生</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>拍摄</h3>
+          <p>摄影机始终记录<strong>原始未压缩 ARRIRAW</strong>，机上不做任何压缩，素材质量零妥协。</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>拷贝时编码</h3>
+          <p>数据从介质拷出的同时，CODEX Platform 在后台自动完成 HDE 编码——<strong>无需人工干预，不增加拷卡时间</strong>。</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>交付与解码</h3>
+          <p>交付 MXF/HDE（旧机型为 .arx 序列）。使用 ARRI Image SDK 的后期软件<strong>透明解码</strong>，调用的仍是原始像素值。</p>
+        </div>
+      </div>
+      <p class="callout">HDE 是<strong>完全无损</strong>的可变码率编码，不是有损压缩——解码还原的文件与原文件逐位一致（bit-exact），画质与元数据分毫不动。</p>
+    </section>
+
+    <!-- 计算器 -->
+    <section id="calc">
+      <p class="eyebrow">省多少</p>
+      <h2>拖动滑块，看看省多少</h2>
+      <div class="calc-card">
+        <div class="calc-controls">
+          <label>日均数据量 <strong id="tb-val">2.0 TB</strong></label>
+          <input type="range" id="tb" min="0.5" max="10" step="0.5" value="2" />
+          <label>拍摄天数 <strong id="days-val">20 天</strong></label>
+          <input type="range" id="days" min="1" max="90" step="1" value="20" />
+        </div>
+        <div class="calc-results">
+          <div class="result"><div class="result-num" id="r-raw">40 TB</div><div class="result-label">原始 ARRIRAW</div></div>
+          <div class="result"><div class="result-num teal" id="r-hde">24 TB</div><div class="result-label">HDE 之后</div></div>
+          <div class="result"><div class="result-num teal" id="r-save">16 TB</div><div class="result-label">节省的空间</div></div>
+        </div>
+        <p class="calc-note">按 HDE 典型体积 ≈ 原始 60% 估算。参考实例：ARRIRAW OpenGate 3.4K 约 996 GB/小时，HDE 后约 584 GB/小时。实际比例随画面内容浮动。</p>
+      </div>
+    </section>
+
+    <!-- 支持范围 -->
+    <section id="support">
+      <p class="eyebrow">支持范围</p>
+      <h2>什么能用，什么不能</h2>
+      <div class="support-grid">
+        <div class="support-col yes">
+          <h3>✓ 适用</h3>
+          <ul>
+            <li>所有 ARRI <strong>ALEXA</strong> 与 <strong>AMIRA</strong> 机型的 ARRIRAW</li>
+            <li><strong>任意分辨率</strong>（为 Bayer 图像优化）</li>
+            <li>Compact Drive、SXR / XR Capture Drive</li>
+            <li>CFast 2.0 介质（7.5.1 起任意品牌读卡器均免费）</li>
+            <li>Silverstack 等工具可直接识别 HDE 卷并照常备份</li>
+          </ul>
+        </div>
+        <div class="support-col no">
+          <h3>✕ 不适用</h3>
+          <ul>
+            <li><strong>ProRes</strong> 素材（HDE 仅针对 ARRIRAW）</li>
+            <li>非 ARRI 机型的 RAW 数据</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 怎么用 -->
+    <section id="use">
+      <p class="eyebrow">怎么用</p>
+      <h2>一个勾选框的事</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>装 CODEX Platform</h3>
+          <p>macOS 菜单栏应用，管理 CODEX 介质的同时负责 HDE 编码。</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>勾选 HDE</h3>
+          <p>Preferences 面板里勾一个选项，拷贝时自动编码，<strong>CODEX 介质上完全免费</strong>。</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>照常工作</h3>
+          <p>已拷出的素材可用 <strong>ARRIRAW HDE Transcoder</strong> 事后补编码（ALEXA 35 / Xtreme / 265）。</p>
+        </div>
+      </div>
+      <div class="cta-card">
+        <p>CODEX Platform 中文下载站</p>
+        <a class="btn" href="https://github.com/jeremyzhu666/codex-platform-cn" target="_blank" rel="noopener">前往下载 →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>ARRIRAW HDE 由 CODEX 开发 · 编码后约 60% 体积、解码逐位一致</p>
+    <p class="footer-fine">资料来源：CODEX / ARRI 官方文档 · HDE 与 CODEX 相关商标归 CODEX Tech Limited 所有</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
